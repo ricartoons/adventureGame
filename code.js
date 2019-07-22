@@ -7,26 +7,20 @@ class Player {
 
   //Moving along Scenario
   goNorth() {
-    this.where[0].directions.find(elem => {
+    const lastIndex = this.where.length - 1;
+
+    this.where[lastIndex].directions.find(elem => {
+      if(elem !== 'n'){
+        console.log(`You can not go in this direction.`);
+        return;
+      } 
       if(elem === 'n') {
-        return elem;
+        scenario = new Scenario(...map.scenarios[lastIndex + 1])
+        //return elem;
       } else {
         console.log(`You can not go in this direction.`);
       }
     });
-
-
-
-    // const lastIndex = this.where.length - 1;
-    // let test = this.where[lastIndex].directions.some((elem) => {
-    //   return elem === 'n';
-    // });
-    // if (test) {
-    //   console.log('Going to North');
-    // } else {
-    //   console.log('You can not go in that direction');
-    // }
-    // return;
   }
 
   goEast() {
@@ -49,6 +43,7 @@ class Player {
     });
     if (test) {
       console.log('Going to South');
+      scenario = new Scenario(...map.scenarios[lastIndex + 1])
     } else {
       console.log('You can not go in that direction');
     }
@@ -57,16 +52,18 @@ class Player {
 
   goOest() {
     const lastIndex = this.where.length - 1;
-    let test = this.where[lastIndex].directions.some((elem) => {
-      return elem === 'o';
+    this.where[lastIndex].directions.find((elem) => {
+      if(elem !== 'o'){
+        console.log(`You can not go in this direction.`);
+        return;
+      }
+      if(elem === 'o') {
+        scenario = new Scenario(...map.scenarios[lastIndex + 1])
+        //return elem;
+      } else {
+        console.log(`You can not go in this direction.`);
+      }
     });
-    if (test) {
-      console.log('Going to Oest');
-    } else {
-      console.log('You can not go in that direction');
-    }
-    return;
-
   }
 
   //Actions
@@ -78,7 +75,7 @@ class Player {
     let objectsInScenario = '';
 
     scenario.objects.forEach((element, index) => {
-      if(index === scenario.objects.length - 1){
+      if(index === 0){
         objectsInScenario += 'a ' + element;
       }else if(index != scenario.objects.length - 1 && index === 0){
         objectsInScenario += 'a ' + element;
@@ -101,11 +98,11 @@ class Player {
     let objectsInBackpack = '';
 
     this.backpack.forEach((element, index) => {
-      if(index === this.backpack.length - 1){
-        objectsInBackpack += element;
-      }else if(index != this.backpack.length - 1 && index === 0){
+      if(index === 0) {
         objectsInBackpack += 'a ' + element;
-      } else if(index != this.backpack.length - 1){
+      } else if(index != this.backpack.length - 1 && index === 0) {
+        objectsInBackpack += 'a ' + element;
+      } else if(index != this.backpack.length - 1) {
         objectsInBackpack += ', a ' + element;
       } else {
         objectsInBackpack += ' and a ' + element;
@@ -124,6 +121,7 @@ class Player {
 
     const test = scenario.objects.find((elem, index) => {
       if(elem == object){
+        //map.updateMap(object);
         return player.backpack.push(scenario.objects.splice(index,1)[0]);
       }
     })
@@ -166,10 +164,10 @@ class Player {
     console.log('You runout...')
   }
 
-  //Localization
-  localization(scenario) {
+  //Path
+  path(scenario) {
     this.where.push(scenario);
-    return `it looks like we're in a ${scenario.name}`;
+    return `It looks like we're in a ${scenario.name}`;
   }
 
 }
@@ -181,24 +179,35 @@ class Scenario {
     this.objects = objects,
     this.directions = directions
   }
+  // updateMap(idScenario, object){
+  //   map.scenarios.find((elem) => {
+  //     if(idScenario === elem[0]){
+  //       console.log(elem[0])
+  //     }
+  //   })
+  // }
 }
 
 class Map {
   constructor() {
     this.scenarios = [
       [0, 'Floresta', ['branch'], ['n']],
-      [1, 'Estrada', ['stone'], ['o']],
+      [1, 'Estrada', ['stone','nylon'], ['o','s']],
       [2, 'Cidade', ['knife'], ['o']]
     ];
   }
 }
+
+//Initials variables
 const map = new Map();
-let scenario = new Scenario(...map.scenarios[0]);
-const player = new Player('Lucas', '');
+let scenario = {};
+let player = {};
 
 function startGame() {
+  scenario = new Scenario(...map.scenarios[0]);
+  player = new Player('Lucas', '');
   console.log(player.name);
-  console.log(player.localization(scenario));
+  console.log(player.path(scenario));
 }
 
 startGame();
@@ -206,13 +215,18 @@ player.look();
 player.pick('branch');
 player.look();
 player.lookBackpack();
-player.drop('branch');
-player.lookBackpack();
-player.look();
 //go to next scenario
 player.goNorth();
+console.log(player.path(scenario));
+player.look();
+player.lookBackpack();
+player.pick('branch');
+player.pick('stone');
 
-//player.goNorth();
-// player.goNorth();
-// console.log(player.pick('stone'));
-// console.log(player.use('knife'));
+player.lookBackpack();
+player.look();
+
+//back to previus scenario
+player.goSouth();
+console.log(player.path(scenario));
+player.look();
