@@ -7,18 +7,18 @@ class Player {
 
   //Actions
   search() {
-    if(!atualLocalization.objects || atualLocalization.objects.length === 0){
+    if(!actualLocalization.objects || actualLocalization.objects.length === 0){
       console.log('Nothing usefull here!');
       return;
     }
     let objectsInScenario = '';
 
-    atualLocalization.objects.forEach((element, index) => {
+    actualLocalization.objects.forEach((element, index) => {
       if(index === 0){
         objectsInScenario += 'a ' + element;
-      }else if(index != atualLocalization.objects.length - 1 && index === 0){
+      }else if(index != actualLocalization.objects.length - 1 && index === 0){
         objectsInScenario += 'a ' + element;
-      } else if(index != atualLocalization.objects.length - 1){
+      } else if(index != actualLocalization.objects.length - 1){
         objectsInScenario += ', a ' + element;
       } else {
         objectsInScenario += ' and a ' + element;
@@ -30,7 +30,7 @@ class Player {
   }
 
   look(){
-    console.log(atualLocalization.description);
+    console.log(actualLocalization.description);
   }
 
   lookBackpack() {
@@ -57,15 +57,15 @@ class Player {
   }
 
   pick(object) {
-    if(!atualLocalization.objects){
+    if(!actualLocalization.objects){
       console.log('Nothing usefull here!')
       return;
     }
 
-    const test = atualLocalization.objects.find((elem, index) => {
+    const test = actualLocalization.objects.find((elem, index) => {
       if(elem == object){
         //map.updateMap(object);
-        return player.backpack.push(atualLocalization.objects.splice(index,1)[0]);
+        return player.backpack.push(actualLocalization.objects.splice(index,1)[0]);
       }
     })
 
@@ -76,7 +76,7 @@ class Player {
     }
   }
 
-  drop(object){
+  drop(object) {
     if(!this.backpack || this.backpack.length === 0){
       console.log('There nothing in your backpack!')
       return;
@@ -84,7 +84,7 @@ class Player {
 
     const test = this.backpack.find((elem, index) => {
       if(elem == object){
-        return atualLocalization.objects.push(player.backpack.splice(index,1)[0]);
+        return actualLocalization.objects.push(player.backpack.splice(index,1)[0]);
       }
     })
 
@@ -94,15 +94,42 @@ class Player {
       console.log(`The ${object} doens't exist in backpack`);
     }
   }
+  //Special Actions
+  action(action) {
+    if(!actualLocalization.puzzle) {
+      console.log('Action denied');
+    }
+    if(actualLocalization.puzzle.solution === action && actualLocalization.puzzle.status === false) {
+      actualLocalization.puzzle.status = true;
+      switch (action) {
+        case 'push statue':
+          console.log(`The statue slowly gives in to the movement and at the end it falls, stamping on the floor and revealing a key!`);
+          actualLocalization.objects.push('key');
+          break;
+
+        case 'use key':
+          console.log(`Although old, the mechanism works perfectly and the chest opens revealing an old amulet!`);
+          actualLocalization.objects.push('amulet');
+          break;
+
+        default:
+          break;
+      }
+    } else if(actualLocalization.puzzle.solution === action && actualLocalization.puzzle.status === true ) {
+      console.log(`Did you already get the hidden item`);
+    } else {
+      console.log(`Nothing happens`);
+    }
+  }
 
   //Moving and 
   goto(path) {
-    atualLocalization.directions.find((item) => {
+    actualLocalization.directions.find((item) => {
       if (item.name !== path) {
         return;
       }
   
-      atualLocalization = map[item.idNextScenario];
+      actualLocalization = map[item.idNextScenario];
     });
   }
   
@@ -117,19 +144,21 @@ const map = [
   { id: 4, name: 'River', directions: [{name: 'boat', idNextScenario: 5}], objects: [], description: 'The current is very strong, it seems to be a deep river, the water is very dirty with earth.' },
   { id: 5, name: 'Lake', directions: [{name: 'island', idNextScenario: 6}], objects: [], description: 'Despite the river the lake is very calm, its surface is flatly flat, it looks like a mirror and it is difficult to differentiate where the sky ends and the lake begins' },
   { id: 6, name: 'Island beach', directions: [{name: 'bamboo woods', idNextScenario: 7}, {name: 'temple', idNextScenario: 8}, {name: 'cemetery', idNextScenario: 9}, {name: 'boat', idNextScenario: 5}], objects: ['lamp'], description: 'Apparently there is nobody living on the island, we have a beach and a forest composed basically of bamboos'},
-  { id: 7, name: 'Bamboo woods', directions: [{name: 'beach', idNextScenario: 6}, {name: 'temple', idNextScenario: 8},  {name: 'cemetery', idNextScenario: 9}, {name: 'back', idNextScenario: 6} ], objects: ['knife'], description: ''},
-  { id: 8, name: 'Temple', directions: [{name: 'bamboo woods', idNextScenario: 7}, {name: 'enter temple', idNextScenario: 10}, {name: 'beach', idNextScenario: 8},  {name: 'cemetery', idNextScenario: 9}, {name: 'back', idNextScenario: 6} ], objects: [], description: ''},
-  { id: 9, name: 'Cemetery', directions: [{name: 'bamboo woods', idNextScenario: 7}, {name: 'temple', idNextScenario: 8},  {name: 'beach', idNextScenario: 6}, {name: 'back', idNextScenario: 6} ], objects: ['shovel'], description: ''},
-  { id: 10, name: 'Inside Temple', directions: [{name: 'leave', idNextScenario: 8}, {name: 'door 1', idNextScenario: 11}, {name: 'door 2', idNextScenario: 12} ], objects: ['parchment'], description: ''},
-  { id: 11, name: 'Cerimony room', directions: [{name: 'back to main room', idNextScenario: 10}, {name: 'move statue', idNextScenario: 11} ], objects: ['key'], description: ''},
-  { id: 12, name: 'Closet', directions: [{name: 'back to main room', idNextScenario: 10}, {name: 'open chest', idNextScenario: 11} ], objects: ['amulet'], description: ''}
+  { id: 7, name: 'Bamboo woods', directions: [{name: 'beach', idNextScenario: 6}, {name: 'temple', idNextScenario: 8},  {name: 'cemetery', idNextScenario: 9}, {name: 'back', idNextScenario: 6} ], objects: ['knife'], description: 'Only a bamboo forest and few trees'},
+  { id: 8, name: 'Temple', directions: [{name: 'bamboo woods', idNextScenario: 7}, {name: 'enter temple', idNextScenario: 10}, {name: 'beach', idNextScenario: 8},  {name: 'cemetery', idNextScenario: 9}, {name: 'back', idNextScenario: 6} ], objects: [], description: 'An ancient temple, with the weathered woods, but still standing'},
+  { id: 9, name: 'Cemetery', directions: [{name: 'bamboo woods', idNextScenario: 7}, {name: 'temple', idNextScenario: 8},  {name: 'beach', idNextScenario: 6}, {name: 'back', idNextScenario: 6} ], objects: ['shovel'], description: 'Some graves still remain, the rest is just a pile of stones'},
+  { id: 10, name: 'Inside Temple', directions: [{name: 'leave', idNextScenario: 8}, {name: 'door 1', idNextScenario: 11}, {name: 'door 2', idNextScenario: 12} ], objects: ['parchment'], description: 'The entrance is made by a large hall in the center in the background there is a statue of more than 3 meters high, on your right there is a door and the left'},
+  { id: 11, name: 'Cerimony room', directions: [{name: 'hall', idNextScenario: 10}, {name: 'move statue', idNextScenario: 11} ], objects: [], description: 'Here is a statue of an oni, looking more closely, you see that the ground just behind the statue is scratching. What do you intend to do?', puzzle: {status: false, solution: 'push statue', reward: 'key'}},
+  { id: 12, name: 'Closet', directions: [{name: 'hall', idNextScenario: 10}, {name: 'open chest', idNextScenario: 11} ], objects: [], description: 'There is a single object in this room, a chest. There is a mark on the top.', puzzle: {status: false,solution: 'use key', reward: 'ancient amulet'}},
+  { id: 13, name: 'Bamboo woods 2', directions: [{name: 'back', idNextScenario: 7}, {name: 'cave', idNextScenario: 14}], objects: [], description: 'There is an entrance dug into a hill, apparently it looks like a cave entrance, what do you intend to do?'},
+  { id: 14, name: 'Cave', directions: [{name: 'back', idNextScenario: 13}, {name: 'cerimony room', idNextScenario: 15}], objects: [], description: 'In the center of the cave is a statue of an oni approximately 7 meters high'}
 ]
 
 let player = {};
-let atualLocalization = '';
+let actualLocalization = '';
 function start(){
   player = new Player('Ricardo');
-  atualLocalization= map[0];
+  actualLocalization= map[0];
 }
 
 start();
@@ -138,8 +167,8 @@ player.look();
 player.search();
 player.pick('branch');
 player.lookBackpack();
-player.drop('branch');
-player.lookBackpack();
+// player.drop('branch');
+// player.lookBackpack();
 
 
 player.goto('right');
@@ -147,7 +176,7 @@ player.look();
 player.search();
 player.pick('naylon');
 player.pick('rope');
-player.search();
+// player.search();
 player.lookBackpack();
 
 
@@ -157,8 +186,9 @@ player.search();
 
 
 player.goto('back');
+player.look();
 player.goto('back');
-
+player.look();
 
 player.goto('left');
 player.look();
@@ -177,16 +207,29 @@ player.goto('island');
 player.look();
 
 
-// player.goto('back');
+player.goto('temple');
+player.look();
 
-// player.goto('left');
 
-// 
+player.goto('enter temple');
+player.look();
 
-// 
 
-// player.goto('island');
+player.goto('door 1');
+player.look();
+player.action('push statue');
+player.pick('key');
+player.lookBackpack();
 
-// player.goto('temple');
 
-// player.goto('enter temple');
+player.goto('hall');
+player.look();
+
+
+player.goto('door 2');
+player.look();
+player.action('use key');
+player.pick('amulet');
+player.lookBackpack();
+
+
