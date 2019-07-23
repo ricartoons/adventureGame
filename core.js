@@ -231,5 +231,3 @@ player.look();
 player.action('use key');
 player.pick('amulet');
 player.lookBackpack();
-
-
