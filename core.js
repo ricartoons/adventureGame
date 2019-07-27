@@ -15,13 +15,13 @@ class Player {
 
     actualLocalization.objects.forEach((element, index) => {
       if(index === 0){
-        objectsInScenario = 'a ' + element;
+        objectsInScenario = 'a ' + element.name;
       }else if(index != actualLocalization.objects.length - 1 && index === 0){
-        objectsInScenario = 'a ' + element;
+        objectsInScenario += 'a ' + element.name;
       } else if(index != actualLocalization.objects.length - 1){
-        objectsInScenario = ', a ' + element;
+        objectsInScenario += ', a ' + element.name;
       } else {
-        objectsInScenario = ' and a ' + element;
+        objectsInScenario += ' and a ' + element.name;
       }
     });
 
@@ -33,6 +33,26 @@ class Player {
     $historyBoard.innerText  = actualLocalization.description;
   }
 
+  examine(object){
+    if(backpack === [] || !object){
+      $historyBoard.innerText  = 'Nothing usefull to examinate!\n\n';
+      return;
+    }
+
+    const test = this.backpack.find((elem) => {
+      if(elem.name == object){
+        return elem;
+      }
+    })
+
+    if(test){
+      $historyBoard.innerText  = `${test.description}\n\n`;
+    } else {
+      $historyBoard.innerText  = `You dont have a ${object}\n\n`;
+    }
+
+  }
+
   lookBackpack() {
     if(this.backpack.length === 0){
       $historyBoard.innerText  = 'There nothing in your backpack!\n\n'
@@ -42,13 +62,13 @@ class Player {
 
     this.backpack.forEach((element, index) => {
       if(index === 0) {
-        objectsInBackpack = 'a ' + element;
+        objectsInBackpack = 'a ' + element.name;
       } else if(index != this.backpack.length - 1 && index === 0) {
-        objectsInBackpack = 'a ' + element;
+        objectsInBackpack += 'a ' + element.name;
       } else if(index != this.backpack.length - 1) {
-        objectsInBackpack = ', a ' + element;
+        objectsInBackpack += ', a ' + element.name;
       } else {
-        objectsInBackpack = ' and a ' + element;
+        objectsInBackpack += ' and a ' + element.name;
       }
     });
 
@@ -56,21 +76,21 @@ class Player {
 
   }
 
-  get(object, url) {
+  get(object) {
     if(!actualLocalization.objects){
       $historyBoard.innerText  = 'Nothing usefull here!\n\n';
       return;
     }
 
     const test = actualLocalization.objects.find((elem, index) => {
-      if(elem == object){
+      if(elem.name == object){
         return player.backpack.push(actualLocalization.objects.splice(index,1)[0]);
       }
     })
 
     if(test){
       $historyBoard.innerText  = `You took a ${object}\n\n`;
-      this.updateBackpack(url);
+      this.updateBackpack();
     } else {
       $historyBoard.innerText  = `The ${object} doens't exist in scenario\n\n`;
     }
@@ -83,23 +103,23 @@ class Player {
     }
 
     const test = this.backpack.find((elem, index) => {
-      if(elem == object){
+      if(elem.name == object){
         return actualLocalization.objects.push(player.backpack.splice(index,1)[0]);
       }
     })
 
     if(test){
       $historyBoard.innerText  = `You droped a ${object}\n\n`;
-      this.updateBackpack(url);
+      this.updateBackpack();
     } else {
       $historyBoard.innerText  = `The ${object} doens't exist in backpack\n\n`;
     }
   }
 
-  updateBackpack(url){
+  updateBackpack(){
     document.querySelector('#backpack').innerHTML = '';
     for(let i = 0; i<this.backpack.length; i += 1){
-      document.querySelector('#backpack').innerHTML =`<li><img src="${url}" alt="${this.backpack[i]}">${this.backpack[i]}</li>`
+      document.querySelector('#backpack').innerHTML +=`<li><img src="${this.backpack[i].url}" alt="${this.backpack[i].name}">${this.backpack[i].name}</li>`
     }
   }
   
@@ -148,6 +168,9 @@ class Player {
 
   //Moving and 
   goto(path) {
+    if(!path){
+      return $historyBoard.innerText  = `Sorry, i don't understand! Let's try again?`;
+    }
     actualLocalization.directions.find((item) => {
       if (item.name !== path) {
         return;
@@ -157,22 +180,26 @@ class Player {
       $historyBoard.innerText  = actualLocalization.description;
     });
   }
-  
+    
 }
 
 
 const map = [
-  { id: 0, name: 'GoodBye', directions: [{name: 'nextScene', idNextScenario: 1}], objects: [], description: 'Nossa história começa com um funeral…\nNosso personagem acaba de perder os pais em um acidente e está órfão.\n\n', image: 'assets/image/scenes/image01.jpg' },
+  { id: 0, name: 'GoodBye', directions: [{name: 'nextScene', idNextScenario: 1}], objects: [], description: 'Nossa história começa com um funeral…\n\nNosso personagem acaba de perder os pais em um acidente e está completamente sozinho...\n\n', image: 'assets/image/scenes/image01.jpg' },
   { id: 1, name: 'Home', directions: [{name: 'nextScene', idNextScenario: 2}], objects: [], description: 'Naquela mesma chuvosa noite, revirando as fotos antigas da família, você encontra um envelope diferente.”\n\n', image: 'assets/image/scenes/image02.jpg' },
   { id: 2, name: 'Desk', directions: [{name: 'nextScene', idNextScenario: 3}], objects: [], description: 'Nele há diversos ideogramas na língua japonesa.\n\n“Estranho, nunca havia visto isso!”\n\n', image: 'assets/image/scenes/image03.jpg' },
-  { id: 3, name: 'Envelope', directions: [{name: '', idNextScenario: 4}], objects: ['postcard'], description: 'Ao quebrar o selo e tirar a embalagem, você descobre uma pintura que parece muito antiga. Nela há um macaco fugindo de outros animais, uma espécie de coelho e um sapo.\nParece que há alguma coisa no envelope\n\n', puzzle: {status: false, solution: 'look envelope', reward: 'postal card'}, image: 'assets/image/scenes/image04.jpg' },
-  { id: 4, name: 'Postcard', directions: [{name: '', idNextScenario: 5}], objects: ['Postal'], description: 'Olhando mais atentamente dentro do envelope, você descobre um cartão postal. E nele os seguintes dizeres: “Encontre-me no templo de Toganōsan Kōsan-ji (栂尾山高山寺) é de seu interesse. Assinado Haruki”\n\n', image: 'assets/image/scenes/image05.jpg' },
-
-
-  { id: 2, name: 'Woods', directions: [{name: 'left', idNextScenario: 1}, {name: 'right', idNextScenario: 2}], objects: ['branch'], description: 'Nossa história começa com um funeral…\nNosso personagem acaba de perder os pais em um acidente e está órfão.\n\n', image: 'assets/image/scenes/image01.jpg' },
-  { id: 3, name: 'WaterFall', directions: [{name: 'climb', idNextScenario: 4}, {name: 'right', idNextScenario: 0}], objects: [], description: 'Naquela mesma chuvosa noite, revirando as fotos antigas da família, você encontra um envelope diferente. Nele há diversos ideogramas na língua japonesa.\n\n“Estranho, nunca havia visto isso!”\n\n', image: 'assets/image/scenes/image02.jpg' },
-  { id: 4, name: 'Rocky Mountains', directions: [{name: 'climb', idNextScenario: 3}, {name: 'left', idNextScenario: 0}], objects: ['nylon', 'rope'], description: 'A kind of rock wall, there are a lot of cracks in it, maybe you can climb\n\n', image: 'assets/image/scenes/image03.jpg' },
-  { id: 5, name: 'Sky dive', directions: [{name: 'jump', idNextScenario: 4}, {name: 'down', idNextScenario: 2}], objects: [], description: 'Definitely this is a hang gliding runway, it is quite high. You can see a river below and a lake a few kilometers ahead.\n\n', image: 'assets/image/scenes/image04.jpg' },
+  { id: 3, name: 'Envelope', directions: [{name: 'nextScene', idNextScenario: 4}], objects: [{name: 'painting', url: 'assets/image/backpack/painting.svg', description: "É uma pintura antiga, há inscrições incompreensiveis para você nela. Mas o desenho é um macaco fugindo de outros animais, parece que o macaco roubou algo deles..."}], description: 'Ao quebrar o selo e abrir a embalagem, você descobre uma pintura que parece muito antiga. Nela está desenhado um macaco fugindo de outros animais, mas parece que há mais alguma coisa no envelope\n\n', puzzle: {status: false, solution: 'look envelope', reward: 'postal card'}, image: 'assets/image/scenes/image04.jpg' },
+  { id: 4, name: 'Postcard', directions: [{name: 'nextScene', idNextScenario: 5}], objects: [{name: 'postcard', url: 'assets/image/backpack/postcard.svg', description: "É um cartão postal simples os dizerem  “Encontre-me no templo de Toganōsan Kōsan-ji (栂尾山高山寺) é de seu interesse. Assinado Haruki” estão no verso, escrito por uma caligrafia bonita e um selo de Osaka de 1990"}], description: 'Olhando mais atentamente dentro do envelope, você descobre um cartão postal. E nele os seguintes dizeres: “Encontre-me no templo de Toganōsan Kōsan-ji (栂尾山高山寺) é de seu interesse. Assinado Haruki”\n\n', image: 'assets/image/scenes/image05.jpg' },
+  { id: 5, name: 'Leaving', directions: [{name: 'nextScene', idNextScenario: 6}], objects: [], description: 'Seus pais falaram desta viagem que fizeram ao Japão na década de 90. Mas nunca mencionaram esse templo.”\n\n', image: 'assets/image/scenes/image06.jpg' },
+  { id: 6, name: 'Leaving', directions: [{name: 'nextScene', idNextScenario: 7}], objects: [], description: 'Motivado pela súbita descoberta e precisando de um tempo para se recuperar, você decide fazer uma viagem ao Japão para entender esse mistério.”\n\n', image: 'assets/image/scenes/image07.jpg' },
+  { id: 7, name: 'Japan', directions: [{name: 'nextScene', idNextScenario: 8}], objects: [], description: 'Ao desembarcar no aeroporto de Osaka, você pega um taxi até o hotel e após o check-in você dorme por 12 horas seguidas…\n\n', image: 'assets/image/scenes/image08.jpg' },
+  { id: 8, name: 'Bath', directions: [{name: 'leave', idNextScenario: 9}, {name: 'right', idNextScenario: 0}], objects: [{name: 'envelope', url: 'assets/image/backpack/note-hotel.svg', description: "Dentro do envelope há um pedaço retangular de papel escrito em seu idioma com uma máquina de escrever: “Tsuji of the monument (Mino Road + Yamada highway)”"}], description: 'Ao acordar, você vê que já passou muito do almoço então vai tomar uma ducha. Ao sair do banho, percebe um envelope acima da sua cama.\n\n O que você vai fazer?', image: 'assets/image/scenes/image09.jpg' },
+  
+  { id: 9, name: 'Lobby', directions: [{name: 'hall', idNextScenario: 10}, {name: 'enter', idNextScenario: 8}], objects: [], description: 'Você está do lado de fora do seu quarto, no lobby do hotel. O Hall do hotel está logo a frente\n\n', image: 'assets/image/scenes/image03.jpg' },
+  { id: 10, name: 'Hall', directions: [{name: 'street', idNextScenario: 11}, {name: 'reception', idNextScenario: 12}], objects: [], description: 'Você está no hall do hotel, a sua frente a saida para a rua, a sua direita fica a recepção\n\n', image: 'assets/image/scenes/image04.jpg' },
+  
+  
+  
   { id: 6, name: 'River', directions: [{name: 'boat', idNextScenario: 5}], objects: [], description: 'The current is very strong, it seems to be a deep river, the water is very dirty with earth.\n\n', image: 'assets/image/scenes/image05.jpg' },
   { id: 7, name: 'Lake', directions: [{name: 'island', idNextScenario: 6}], objects: [], description: 'Despite the river the lake is very calm, its surface is flatly flat, it looks like a mirror and it is difficult to differentiate where the sky ends and the lake begins\n\n', image: 'assets/image/scenes/image06.jpg' },
   { id: 8, name: 'Island beach', directions: [{name: 'bamboo woods', idNextScenario: 7}, {name: 'temple', idNextScenario: 8}, {name: 'cemetery', idNextScenario: 9}, {name: 'boat', idNextScenario: 5}], objects: ['lamp'], description: 'Apparently there is nobody living on the island, we have a beach and a forest composed basically of bamboos\n\n', image: 'assets/image/scenes/image00.jpg'},
@@ -204,10 +231,26 @@ function start(){
 start();
 setTimeout(() => player.goto('nextScene'), 1000);
 setTimeout(() => player.goto('nextScene'), 2000);
-setTimeout(() => player.goto('nextScene'), 3000);
+setTimeout(() => {
+  player.goto('nextScene');
+  player.get('painting');
+  player.look();
+}, 3000);
+setTimeout(() => {
+  player.goto('nextScene'); 
+  player.get('postcard');
+  player.look();
+}, 4000);
+setTimeout(() => player.goto('nextScene'), 5000);
+setTimeout(() => player.goto('nextScene'), 6000);
+setTimeout(() => player.goto('nextScene'), 7000);
+setTimeout(() => player.goto('nextScene'), 8000);
+setTimeout(() => player.goto('nextScene'), 9000);
+setTimeout(() => player.goto('nextScene'), 10000);
 
 //Action Buttom
-$actionButton.addEventListener('click', function(){
+$actionButton.addEventListener('click', function(e){
+  e.preventDefault();
   const commandPhrase = $commandInput.value.toLowerCase();
   const words = commandPhrase.split(' ');
   
@@ -216,8 +259,10 @@ $actionButton.addEventListener('click', function(){
   let object = '';
   let direction = '';
   
+  //Your IA XD
   words.forEach((elem) => {
     switch (elem){
+      /* COMMANDS */
       case 'search':
         if(command === ''){
           command = 'search'
@@ -232,7 +277,15 @@ $actionButton.addEventListener('click', function(){
         } else {
           $historyBoard.innerText = `Você só pode entrar com um comando por vez\n\n`
         }
-      break;
+        break;
+        
+        case 'examine':
+          if(command === ''){
+          command = 'examine'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez\n\n`
+        }
+        break;
       
       case 'backpack':
         if(command === ''){
@@ -266,6 +319,22 @@ $actionButton.addEventListener('click', function(){
         }
         break;
 
+      case 'leave':
+        if(command === ''){
+          command = 'leave'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez\n\n`
+        }
+        break;
+
+      case 'enter':
+        if(command === ''){
+          command = 'enter'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez\n\n`
+        }
+        break;
+
       case 'look envelope':
         if(command === ''){
           command = 'look envelope'
@@ -289,7 +358,8 @@ $actionButton.addEventListener('click', function(){
           $historyBoard.innerText = `Você só pode entrar com um comando por vez\n\n`
         }
       break;
-      
+
+      /* OBJECTS */
       case 'postcard':
         if(object === ''){
           object = 'postcard'
@@ -298,17 +368,17 @@ $actionButton.addEventListener('click', function(){
         }
         break;
 
-        case 'stone':
+        case 'envelope':
         if(object === ''){
-          object = 'branch'
+          object = 'envelope'
         } else {
           $historyBoard.innerText = `Você só pode entrar com um objeto por vez\n\n`
         }
         break;
 
-        case 'knife':
+        case 'painting':
           if(object === ''){
-          object = 'knife'
+          object = 'painting'
         } else {
           $historyBoard.innerText = `Você só pode entrar com um objeto por vez\n\n`
         }
@@ -345,7 +415,8 @@ $actionButton.addEventListener('click', function(){
           $historyBoard.innerText = `Você só pode entrar com um objeto por vez\n\n`
         }
       break;
-      
+
+      /* DIRECTIONS */
       case 'nextScene':
         if(direction === ''){
           direction = 'nextScene'
@@ -386,6 +457,22 @@ $actionButton.addEventListener('click', function(){
         }
       break;
 
+      /* PLACES */
+      case 'hall':
+        if(direction === ''){
+          direction = 'hall'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez\n\n`
+        }
+      break;
+      case 'room':
+        if(direction === ''){
+          direction = 'room'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez\n\n`
+        }
+      break;
+
       default:
       break;
     }         
@@ -394,6 +481,9 @@ $actionButton.addEventListener('click', function(){
   switch(command){
     case 'search':
       player.search()
+      break;
+    case 'examine':
+      player.examine(object)
       break;
     case 'look':
       player.look()
@@ -409,6 +499,12 @@ $actionButton.addEventListener('click', function(){
     break;
     case 'go':
       player.goto(direction)
+    break;
+    case 'leave':
+      player.goto('leave')
+    break;
+    case 'enter':
+      player.goto('enter')
     break;
     case 'look envelope':
       player.goto(direction)

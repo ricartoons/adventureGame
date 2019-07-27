@@ -9,7 +9,7 @@
         *{padding: 0; margin: 0; }
         html, body{  height: 100%; width: 100%;}
         body{background: #ccc; display: flex;}
-        #container{ border: 1px solid #000; border-radius: 5px; width: 90%; max-width: 1140px;height: 90%; max-height: 800px; display: flex; margin: 5vh auto; background: url('assets/image/bgContainer.jpg') center 50px; background-size: cover; overflow: hidden}
+        #container{ border: 1px solid #000; border-radius: 5px; width: 70%; max-width: 1140px;height: 90%; max-height: 800px; display: flex; margin: 5vh auto; background: url('assets/image/bgContainer.jpg') center 50px; background-size: cover; overflow: hidden}
             #container-main{display: flex; flex-wrap: wrap; width: 70%; height: 100%;box-shadow: 20px 0px 30px #000; z-index: 2;}
                 #container-canvas{ height: 70%; display: flex; flex: 1 100% }
                 #container-action{ height: 30%; display: flex; flex: 1 100%; flex-wrap: wrap; outline: initial }
@@ -25,7 +25,8 @@
         .action:hover:active{ box-shadow: 0 0px 0 #441611; margin-top: 0 }
         .scenario{ width: 100%; }
         .backpack {width: 100%;list-style: none;display: flex;flex-direction: row;justify-content: space-around;z-index: 3;flex-wrap: wrap;align-content: flex-start;}
-        .backpack li{width: 30%;height: 20%;margin: 2%;border: 5px solid #ffbb00;padding: 5px;font-size: 18px;color:#ffbb00;background: rgba(0,0,0,.5); display: flex; flex-direction: column; justify-content: space-around; align-items: center; align-content: center}
+        .backpack li{width: 30%;height: 15%;margin: 2%;border: 5px solid #ffbb00;padding: 5px;font-size: 18px;color:#ffbb00;background: rgba(0,0,0,.5); display: flex; flex-direction: column; justify-content: space-around; align-items: center; align-content: center}
+        .backpack li img{max-width: 60px; }
         /* Responsivity - desk*/
         
     </style>
@@ -39,14 +40,15 @@
             <div id="container-action">
                 <div id="history" class="history"></div>
                 <div class="container-command">
-                    <input type="text" id="command" class="command" placeholder="Insert your action">
-                    <button id="action" class="action">Run</button>
+                    <form action="">
+                        <input type="text" id="command" class="command" placeholder="Insert your action">
+                        <button id="action" class="action" type="submit">Run</button>
+                    </form>
                 </div>
             </div>
         </div>
         <div id="container-backpack">
             <ul id="backpack" class="backpack">
-
             </ul>
         </div>
     </div>

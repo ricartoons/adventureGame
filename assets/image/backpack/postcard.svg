@@ -2,16 +2,16 @@
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="384px" height="256px" viewBox="0 0 384 256" enable-background="new 0 0 384 256" xml:space="preserve">
-<rect x="16" y="16" fill="#FFECD0" width="352" height="224"/>
+	 width="360px" height="234px" viewBox="0 0 360 234" enable-background="new 0 0 360 234" xml:space="preserve">
+<rect fill="#FFFBDB" width="360" height="234"/>
 <g>
-	<path d="M0,0v256h384V0H0z M368,240H16V16h352V240z M368,240"/>
-	<rect x="184" y="40" width="16" height="176"/>
-	<path d="M352.609,32H267v96h85.609V32z M336.609,112H283V48h53.609V112z M336.609,112"/>
-	<rect x="248.902" y="160" width="95.707" height="16"/>
-	<rect x="248.902" y="192" width="95.707" height="16"/>
-	<rect x="36.105" y="64" width="108.406" height="16"/>
-	<rect x="36.105" y="104" width="108.406" height="16"/>
-	<rect x="36.105" y="144" width="62.234" height="16"/>
+	<path d="M0,0v234h359.989V0H0z M344.989,219.375H15V14.625h329.99V219.375z M344.989,219.375"/>
+	<rect x="172.495" y="36.563" width="15" height="160.875"/>
+	<path d="M330.561,29.25h-80.256V117h80.256V29.25z M315.562,102.375h-50.257v-58.5h50.257V102.375z M315.562,102.375"/>
+	<rect x="233.339" y="146.25" width="89.723" height="14.625"/>
+	<rect x="233.339" y="175.5" width="89.723" height="14.625"/>
+	<rect x="33.847" y="58.5" width="101.627" height="14.625"/>
+	<rect x="33.847" y="95.063" width="101.627" height="14.625"/>
+	<rect x="33.847" y="131.625" width="58.343" height="14.625"/>
 </g>
 </svg>
