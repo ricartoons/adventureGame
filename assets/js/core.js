@@ -216,7 +216,7 @@ class Player {
 
 
 const map = [
-  { id: 0, name: 'GoodBye', directions: [{name: 'nextScene', idNextScenario: 1}], objects: [], description: 'Our story begins with a funeral… \n\nOur character has just lost his parents in an accident and is completely alone ...', image: 'assets/image/scenes/image01.jpg' },
+  { id: 0, name: 'GoodBye', directions: [{name: 'nextScene', idNextScenario: 1}], objects: [], description: 'Our story begins with a funeral… \n\nOur character has just lost his parents in an accident and is completely alone', image: 'assets/image/scenes/image01.jpg' },
   { id: 1, name: 'Home', directions: [{name: 'nextScene', idNextScenario: 2}], objects: [], description: 'That same rainy night, looking through the old family photos, you find a different envelope.', image: 'assets/image/scenes/image02.jpg' },
   { id: 2, name: 'Desk', directions: [{name: 'nextScene', idNextScenario: 3}], objects: [], description: 'There are several ideograms in the Japanese language.\n\n“Strange, I have never seen that!”', image: 'assets/image/scenes/image03.jpg' },
   { id: 3, name: 'Envelope', directions: [{name: 'nextScene', idNextScenario: 4}], objects: [{name: 'painting', url: 'assets/image/backpack/painting.svg', urlExamine: 'assets/image/examine/painting.jpg', description: "It is an old painting, there are incomprehensible inscriptions for you on it. But the drawing is a monkey running away from other animals, it looks like the monkey stole something from them ..."}], description: 'By breaking the seal and opening the package, you discover a very old painting.\n\nLooks like something else is in the envelope', puzzle: {status: false, solution: 'look envelope', reward: 'postal card'}, image: 'assets/image/scenes/image04.jpg' },

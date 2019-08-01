@@ -28,7 +28,29 @@ Para criação do jogo foram utilizadas as tecnologias:
 
 ## 2. O código
 
-Basicamente há dois arquivos no jogo, o index.html (a interface visual oferecida para o usuário) e o core.js (onde está toda a lógica do jogo);
+O código está estruturado da seguinte forma:
+index.html
+README.md
+assets
+    /css
+        style.css
+    /dependencies
+        /bootstrap
+            bootstrap.min.css
+            bootstrap.min.js
+            jquery-3.3.1.slim.min.js
+    /image
+        /backpack
+            ...images...
+        /examine
+            ...images...
+        /scenes
+            ...images...
+        bgBackpack.jpg
+        bgContainer.jpg
+        readme1.jpg
+    /js
+        core.js
 
 
 ## 3. o HTML
