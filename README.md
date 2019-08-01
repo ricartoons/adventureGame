@@ -31,26 +31,26 @@ Para criação do jogo foram utilizadas as tecnologias:
 O código está estruturado da seguinte forma:
 index.html
 README.md
->assets
-    >/css
-        >style.css
-    >/dependencies
-        >/bootstrap
-            >bootstrap.min.css
-            >bootstrap.min.js
-            >jquery-3.3.1.slim.min.js
-    >/image
-        >/backpack
-            >...images...
-        >/examine
-            >...images...
-        >/scenes
-            >...images...
-        >bgBackpack.jpg
-        >bgContainer.jpg
-        >readme1.jpg
-    >/js
-        >core.js
+>assets  
+    >/css  
+        >style.css  
+    >/dependencies  
+        >/bootstrap  
+            >bootstrap.min.css  
+            >bootstrap.min.js  
+            >jquery-3.3.1.slim.min.js  
+    >/image  
+        >/backpack  
+            >...images...  
+        >/examine  
+            >...images...  
+        >/scenes  
+            >...images...  
+        >bgBackpack.jpg  
+        >bgContainer.jpg  
+        >readme1.jpg  
+    >/js  
+        >core.js  
 
 
 ## 3. o HTML
