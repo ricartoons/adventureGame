@@ -264,7 +264,7 @@ const $scenario = document.querySelector('#scenario');
 const $closeModal = document.querySelector('#closeModal');
 
 function start() {
-  player = new Player('Ricardo');
+  player = new Player('John Doe');
   actualLocalization = map[0];
   $scenario.src = actualLocalization.image;
   $historyBoard.innerText = actualLocalization.description;

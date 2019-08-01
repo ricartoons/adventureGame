@@ -28,30 +28,82 @@ Para criação do jogo foram utilizadas as tecnologias:
 
 ## 2. O código
 
-O código está estruturado da seguinte forma:
-index.html
-README.md
-assets  
-    /css  
-        style.css  
-    /dependencies  
-        /bootstrap  
-            bootstrap.min.css  
-            bootstrap.min.js  
-            jquery-3.3.1.slim.min.js  
-    /image  
-        /backpack  
-            ...images...  
-        /examine  
-            ...images...  
-        /scenes  
-            ...images...  
-        bgBackpack.jpg  
-        bgContainer.jpg  
-        readme1.jpg  
-    /js  
-        core.js  
+#### 2.1 A Classe Player
 
+Foi criada uma classe Player onde as propriedades name, whare e backpack são setadas, além disso os métodos search(), look(), help(), examine(), lookBackpack(), get(), drop(), updateBackpack() e goto() são criados;
+
+#### 2.2 A variável map
+Utilizamos a constante "map" para criarmos o mapa do jogo, onde iremos adicionar em cada indice o id do cenário, seu nome, as direções permitidas, a descrição do cenário, a imagem do cenário e os objetos que nela estão contidos com suas respectivas imagens e descrições.
+
+#### 2.3 A função start
+Depois das devidas instanciações feitas na função start:
+
+```
+function start() {
+  player = new Player('John Doe');
+  actualLocalization = map[0];
+  $scenario.src = actualLocalization.image;
+  $historyBoard.innerText = actualLocalization.description;
+}
+
+```
+
+#### 2.4 As funções setTimeout
+O jogo efetivamente começa, onde há uma sequencia de funções setTimeout's que serão responsáveis pela contextualização do usuário na história
+
+#### 2.5 The command Bar 
+Após isso, o usuário deverá interagir utilizando a Command bar com os comandos sugeridos ou entrar como comando 'Help' para receber um pequeno descritivo dos principais comandos do jogo
+
+```
+  help() {
+    document.querySelector('#container').classList.add('addBlur');
+    $('#examine-modal').modal('show');
+    document.querySelector('#examine-modal__body').innerHTML += `<div class="row">
+      <div class="col-md-12">
+        <h1>How to play</h1>
+        <p>The game is basically an interactive story where we create our character through commands and actions as follows:</p>
+      </div>
+      <div class="col-md-4">
+        <p>Exploration</p>
+        <ul class="help-list">
+          <li><u>look</u>: describes the environment you are</li>
+          <li><u>search</u>: looking for something that is not evident</li>
+          <li><u>examine</u>: examines something that is in your backpack</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <p>Navigation</p>
+        <ul class="help-list">
+          <li><u>go to</u>: move our character across the game map, through the scenarios</li>        
+          <li><u>call</u>: Used to call a taxi or uber!</li>        
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <p>Interation</p>
+        <ul class="help-list">
+          <li><u>get</u>: take something from the scenery and put it in your backpack</li>
+          <li><u>drop</u>: remove something from the backpack</li>
+        </ul>
+      </div>
+      <div class="col-md-12">
+          <h1>Puzzles</h1>
+          <p>There are also some puzzles and other commands that you must discover to advance the game.</p>
+          <p>Have a good time :)</p>
+      </div>
+    </div>`
+  }
+
+```
+
+Alguns comandos são mais complexos como por exemplo GET STONE, é um comando composto, onde para sua correta execução utilizamos a função contida no **addEventListener** do actionButton. 
+
+Lá quebraremos a frase em palavras
+```
+const commandPhrase = $commandInput.value.toLowerCase();
+const words = commandPhrase.split(' ');
+```
+E utilizaremos um switch para verificar se a palavra digitada existe no vocabulario cadastrado. Em caso positivo, verificamos se ela é um command, object ou direction e atribuimos a variável correspondente. (é uma espécie de inteligencia artificial #sqn :wink:)
+ 
 
 ## 3. o HTML
 
