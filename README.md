@@ -5,15 +5,17 @@
 ## Introduction
 
 Torii é um jogo baseado nos Adventure Games do final da década de 80, como a Lenda da Gávea e Amazonia do MSX!
-Conforme o wikipedia **Jogos de aventura, também conhecidos como adventures, são jogos eletrônicos cuja ênfase é focada no enredo e não na parte gráfica ou ação. Um jogo que define bem esse estilo é o clássico Where in the World is Carmen Sandiego?, um sucesso do início da década de 1980, em que jogador é instigado a viajar através do mundo para capturar Carmen San Diego e acaba conhecendo a geografia e aspectos culturais dos países por onde passa.**
 
-### Requirements
+Conforme o wikipedia *Jogos de aventura, também conhecidos como adventures, são jogos eletrônicos cuja ênfase é focada no **enredo** e não na parte gráfica ou ação. Um jogo que define bem esse estilo é o clássico **Where in the World is Carmen Sandiego?**, um sucesso do início da década de 1980, em que jogador é instigado a viajar através do mundo para capturar Carmen San Diego e acaba conhecendo a **geografia** e aspectos **culturais** dos países por onde passa.*
 
-- [Fork this repo]()
-- Clone this repo into your `~/code/labs`
-- The images are also included in the repository
+### Jogabilidade
 
-## 1. First iteration: Draw the Game Board
+Nossa área de jogo é dividida em três partes:
+1. Stage - Onde toda a história é contada através de textos e imagens; 
+2. Command bar - Aqui são dados os comando para que possamos interagir com nosso personagem;
+3. Backpack - Todos os ítens coletados durante a aventura serão armazenados aqui;
+
+## 1. First iteration: Prólogo
 
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_ab5a6ba28003829bd3d8d485feeee649.png)
