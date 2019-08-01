@@ -104,7 +104,46 @@ const words = commandPhrase.split(' ');
 ```
 E utilizaremos um switch para verificar se a palavra digitada existe no vocabulario cadastrado. Em caso positivo, verificamos se ela é um command, object ou direction e atribuimos a variável correspondente. (é uma espécie de inteligencia artificial #sqn :wink:)
  
+```
+for (let i = 0; i < words.length; i += 1) {
+    switch (words[i]) {
+      case 'help':
+        if (command === '') {
+          command = 'help'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          return;
+        }
+        break;
 
+      case 'search':
+        if (command === '') {
+          command = 'search'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          return;
+        }
+        break;
+
+      case 'look':
+        if (command === '') {
+          command = 'look'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          return;
+        }
+        break;
+
+      case 'examine':
+        if (command === '') {
+          command = 'examine'
+        } else {
+          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          return;
+        }
+        break;
+    ...
+```
 ## 3. o HTML
 
 No Html temos 
