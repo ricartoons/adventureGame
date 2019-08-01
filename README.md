@@ -4,39 +4,44 @@
 
 ## Introduction
 
-Torii é um jogo baseado nos Adventure Games do final da década de 80, como a Lenda da Gávea e Amazonia do MSX!
+Torii is a game based on Adventure Games of the late 80's, like the Legend of Gávea and Amazonia of MSX!
 
-Conforme o wikipedia *Jogos de aventura, também conhecidos como adventures, são jogos eletrônicos cuja ênfase é focada no **enredo** e não na parte gráfica ou ação. Um jogo que define bem esse estilo é o clássico **Where in the World is Carmen Sandiego?**, um sucesso do início da década de 1980, em que jogador é instigado a viajar através do mundo para capturar Carmen San Diego e acaba conhecendo a **geografia** e aspectos **culturais** dos países por onde passa.*
+According to wikipedia *Adventure games, also known as adventures, are electronic games whose emphasis is on the **storyline** and not the graphics or action. A game that defines this style well is the classic "Where in the World is Carmen Sandiego?", A hit of the early 1980s, where a player is urged to travel across the world to capture Carmen San Diego and ends up meeting. the **geography** and **cultural aspects** of the countries you pass through.*
 
-### Jogabilidade
 
-Nossa área de jogo é dividida em três partes:
-1. **Stage** - Onde toda a história é contada através de textos e imagens; 
-2. **Command bar** - Aqui são dados os comando para que possamos interagir com nosso personagem;
-3. **Backpack** - Todos os ítens coletados durante a aventura serão armazenados aqui;
+### Gameplay
+
+Our play area is divided into three parts:
+1. **Stage** - Where the whole story is told through text and images;
+2. **Command bar** - Here are given commands so we can interact with our character;
+3. **Backpack** - All items collected during the adventure will be stored here;
 
 ![](https://github.com/ricartoons/adventureGame/blob/master/assets/image/readme1.jpg)
 
 
-## 1. Tecnologias utilizadas
+### Winning or losing
+In Torii the player does not die, he simply has to get out of that scenario proposed for him otherwise he does not advance. The game is over when all the puzzles are solved.
 
-Para criação do jogo foram utilizadas as tecnologias:
+
+## 1. Technologies used
+
+For the creation of the game the following technologies were used:
 * HTML/CSS
 * Javascript
 * Bootstrap
 
 
-## 2. O código
+## 2. The code
 
-#### 2.1 A Classe Player
+#### 2.1 The Player class
 
-Foi criada uma classe Player onde as propriedades name, whare e backpack são setadas, além disso os métodos search(), look(), help(), examine(), lookBackpack(), get(), drop(), updateBackpack() e goto() são criados;
+A Player class has been created where the name, whare, and backpack properties are set, plus the search (), look (), help (), examine (), lookBackpack (), get (), drop (), updateBackpack ( ) and goto () are created;
 
-#### 2.2 A variável map
-Utilizamos a constante "map" para criarmos o mapa do jogo, onde iremos adicionar em cada indice o id do cenário, seu nome, as direções permitidas, a descrição do cenário, a imagem do cenário e os objetos que nela estão contidos com suas respectivas imagens e descrições.
+#### 2.2 The map variable
+We use the constant "map" to create the game map, where we will add in each index the scenario id, its name, the allowed directions, the scenery description, the scenery image and the objects that are contained therein. images and descriptions.
 
-#### 2.3 A função start
-Depois das devidas instanciações feitas na função start:
+#### 2.3 The start function
+After proper instantiations made in the start function:
 
 ```
 function start() {
@@ -48,11 +53,11 @@ function start() {
 
 ```
 
-#### 2.4 As funções setTimeout
-O jogo efetivamente começa, onde há uma sequencia de funções setTimeout's que serão responsáveis pela contextualização do usuário na história
+#### 2.4 The setTimeout Functions
+The game effectively begins, where there is a sequence of setTimeout's functions that will be responsible for the user contextualization in the story.
 
 #### 2.5 The command Bar 
-Após isso, o usuário deverá interagir utilizando a Command bar com os comandos sugeridos ou entrar como comando 'Help' para receber um pequeno descritivo dos principais comandos do jogo
+After that, the user should interact using the Command bar with the suggested commands or enter as a 'Help' command to get a short description of the game's main commands.
 
 ```
   help() {
@@ -95,14 +100,12 @@ Após isso, o usuário deverá interagir utilizando a Command bar com os comando
 
 ```
 
-Alguns comandos são mais complexos como por exemplo GET STONE, é um comando composto, onde para sua correta execução utilizamos a função contida no **addEventListener** do actionButton. 
-
-Lá quebraremos a frase em palavras
+Some commands are more complex such as *GET STONE*, is a compound command, where for its correct execution we use the function contained in the ** addEventListener ** of actionButton. There we will break the sentence into words:
 ```
 const commandPhrase = $commandInput.value.toLowerCase();
 const words = commandPhrase.split(' ');
 ```
-E utilizaremos um switch para verificar se a palavra digitada existe no vocabulario cadastrado. Em caso positivo, verificamos se ela é um command, object ou direction e atribuimos a variável correspondente. (é uma espécie de inteligencia artificial #sqn :wink:)
+And we will use a switch to check if the typed word exists in the registered vocabulary. If so, we check if it is a command, object or direction and assign the corresponding variable. (it's a kind of artificial intelligence #sqn :wink:)
  
 ```
 for (let i = 0; i < words.length; i += 1) {
@@ -144,28 +147,26 @@ for (let i = 0; i < words.length; i += 1) {
         break;
     ...
 ```
-## 3. o HTML
+Then we passed another switch to perform this filtering, passing the correct command.
+```
+  switch (command) {
+    case 'help':
+      player.help()
+      break;
+    case 'search':
+      player.search()
+      break;
+    case 'examine':
+      player.examine(object)
+      break;
+    case 'look':
+      player.look()
+      break;
 
-No Html temos 
+    ...
+```
 
-:bulb: Remember the boundaries!
+## 3. Enhancements and Upgrades
 
-## 4. Fourth Iteration: Create Obstacles
-
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_618fa6bbeed08f1e74b9457af1ecaf4c.png)
-
-Now let´s make this interesting. We should create obstacles that shows up every certain amount of times. (Remember how we did them on the Learning Unit). In this iteration, just limit to create them :wink:
-
-They will always start in the position **0** of the `y` axis, but you should make them appear in a random place of the `x` axis.
-
-## 5. Fifth Iteration: Move the Obstacles
-
-For moving the obstacles, we need to continuously update our `canvas`. In this iteration you need to continuously change the position of the obstacles in every update, making them move down the road.
-
-## 6. Bonus Iteration: Points, Points, Points
-
-Oh! If we want to challenge somebody, we need to quantify who is making it better. So we need to add a **score**. Go ahead and add a method to count points while you keep the car avoiding obstacles.
-
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_e4b1a09cee1b1a827a2c68023d0d2b1f.png)
-
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_4e64a09180fd0add2766f7e28ebce6bf.png)
+While developing the game I had many insights, duly noted for later versions. But suggestions and criticism will always be welcome.
+Good game :)

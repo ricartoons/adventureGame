@@ -314,7 +314,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'help'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -323,7 +323,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'search'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -332,7 +332,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'look'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -341,7 +341,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'examine'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -350,7 +350,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'lookBackpack'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -359,7 +359,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'get'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -369,7 +369,7 @@ $actionButton.addEventListener('click', function (e) {
           command = 'drop'
           puzzle = true
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -378,7 +378,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'drop'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -387,7 +387,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'go'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -396,7 +396,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'call'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -405,7 +405,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'ask'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -414,7 +414,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'leave'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -423,7 +423,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'enter'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -432,7 +432,7 @@ $actionButton.addEventListener('click', function (e) {
         if (command === '') {
           command = 'use'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -442,7 +442,7 @@ $actionButton.addEventListener('click', function (e) {
           command = 'drop'
           puzzle = true
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -568,7 +568,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'nextScene'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -631,7 +631,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'hall'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -639,7 +639,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'room'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -647,7 +647,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'lobby'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -655,7 +655,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'reception'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -663,7 +663,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'street'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -671,7 +671,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'park'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -679,7 +679,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'house'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -687,7 +687,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'trail'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -695,7 +695,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'temple'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
@@ -703,7 +703,7 @@ $actionButton.addEventListener('click', function (e) {
         if (direction === '') {
           direction = 'altar'
         } else {
-          $historyBoard.innerText = `Você só pode entrar com um comando por vez`;
+          $historyBoard.innerText = `You can only enter one command at a time.`;
           return;
         }
         break;
