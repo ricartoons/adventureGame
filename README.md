@@ -11,30 +11,29 @@ Conforme o wikipedia *Jogos de aventura, também conhecidos como adventures, sã
 ### Jogabilidade
 
 Nossa área de jogo é dividida em três partes:
-1. Stage - Onde toda a história é contada através de textos e imagens; 
-2. Command bar - Aqui são dados os comando para que possamos interagir com nosso personagem;
-3. Backpack - Todos os ítens coletados durante a aventura serão armazenados aqui;
-
+1. **Stage** - Onde toda a história é contada através de textos e imagens; 
+2. **Command bar** - Aqui são dados os comando para que possamos interagir com nosso personagem;
+3. **Backpack** - Todos os ítens coletados durante a aventura serão armazenados aqui;
 
 ![](https://github.com/ricartoons/adventureGame/blob/master/assets/image/readme1.jpg)
 
 
-## 1. First iteration: Prólogo
+## 1. Tecnologias utilizadas
+
+Para criação do jogo foram utilizadas as tecnologias:
+* HTML/CSS
+* Javascript
+* Bootstrap
 
 
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_ab5a6ba28003829bd3d8d485feeee649.png)
+## 2. O código
 
-The first thing we need is to create our board. The left side of the image is already on the HTML file, but when we click on the **StartGame** button, we need to create the canvas and display our road.
+Basicamente há dois arquivos no jogo, o index.html (a interface visual oferecida para o usuário) e o core.js (onde está toda a lógica do jogo);
 
-## 2. Second Iteration: Draw Player´s Car
 
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_9a8f35a079a1343f39cee4028ab8a081.png)
+## 3. o HTML
 
-Once we have our road, we need the player´s car. On the `images` folder, you will find a `.png` file you should use for the player.
-
-## 3. Third Iteration: Make Player´s Car move right and left
-
-In our game, the player will only be able to move the car to the right and left. Using `left` and `right` arrows, the player should be able to move the car.
+No Html
 
 :bulb: Remember the boundaries!
 
