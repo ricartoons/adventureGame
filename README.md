@@ -15,6 +15,10 @@ Nossa área de jogo é dividida em três partes:
 2. Command bar - Aqui são dados os comando para que possamos interagir com nosso personagem;
 3. Backpack - Todos os ítens coletados durante a aventura serão armazenados aqui;
 
+
+![](https://github.com/ricartoons/adventureGame/blob/master/assets/image/readme1.jpg)
+
+
 ## 1. First iteration: Prólogo
 
 
