@@ -1,12 +1,11 @@
 ![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
 
-# JS | Canvas RaceCar
+# Project #1: Torri - Adventure Game
 
 ## Introduction
 
-We are ready to start making some games with `canvas` help, so in this first exercise we will a **Car Race** using some basic animations we learned today.
-
-Remember you have the Learning Units to check any concept you might need. We are working with `2D` context, so you should think the canvas is a cartesian plane, where you can move elements changing their position in any of the `axis`.
+Torii é um jogo baseado nos Adventure Games do final da década de 80, como a Lenda da Gávea e Amazonia do MSX!
+Conforme o wikipedia **Jogos de aventura, também conhecidos como adventures, são jogos eletrônicos cuja ênfase é focada no enredo e não na parte gráfica ou ação. Um jogo que define bem esse estilo é o clássico Where in the World is Carmen Sandiego?, um sucesso do início da década de 1980, em que jogador é instigado a viajar através do mundo para capturar Carmen San Diego e acaba conhecendo a geografia e aspectos culturais dos países por onde passa.**
 
 ### Requirements
 
