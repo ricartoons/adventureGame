@@ -39,12 +39,12 @@ class Player {
     document.querySelector('#examine-modal__body').innerHTML += `<div class="row">
       <div class="col-md-12">
         <h1>How to play</h1>
-        <p>O jogo basicamente consiste em interação com a história através dos seguintes comandos:</p>
+        <p>O jogo é basicamente uma história interativa, onde guiamos nosso personagem através comandos e ações, como segue:</p>
       </div>
       <div class="col-md-4">
         <p>Exploration</p>
         <ul class="help-list">
-          <li><u>look</u>: pede uma descrição do ambiente que você está</li>
+          <li><u>look</u>: descreve o ambiente que você está</li>
           <li><u>search</u>: procura por algo que não está evidente</li>
           <li><u>examine</u>: examina algo que está em sua mochila</li>
         </ul>
@@ -65,7 +65,7 @@ class Player {
       </div>
       <div class="col-md-12">
           <h1>Puzzles</h1>
-          <p>Há também alguns puzzles que você deve descobrir para avançar no jogo.</p>
+          <p>Há também alguns puzzles e outros comandos que você deve descobrir para avançar no jogo.</p>
           <p>Bom divertimento :)</p>
       </div>
     </div>`
@@ -275,24 +275,24 @@ function start() {
 }
 
 start();
-setTimeout(() => player.goto('nextScene'), 1000);
-setTimeout(() => player.goto('nextScene'), 2000);
+setTimeout(() => player.goto('nextScene'), 7000);
+setTimeout(() => player.goto('nextScene'), 14000);
 setTimeout(() => {
   player.goto('nextScene');
   player.get('painting');
   player.look();
-}, 3000);
+}, 21000);
 setTimeout(() => {
   player.goto('nextScene');
   player.get('postcard');
   player.look();
-}, 4000);
-setTimeout(() => player.goto('nextScene'), 5000);
-setTimeout(() => player.goto('nextScene'), 6000);
-setTimeout(() => player.goto('nextScene'), 7000);
-setTimeout(() => player.goto('nextScene'), 8000);
-setTimeout(() => player.goto('nextScene'), 9000);
-setTimeout(() => player.goto('nextScene'), 10000);
+}, 28000);
+setTimeout(() => player.goto('nextScene'), 35000);
+setTimeout(() => player.goto('nextScene'), 42000);
+setTimeout(() => player.goto('nextScene'), 49000);
+setTimeout(() => player.goto('nextScene'), 56000);
+setTimeout(() => player.goto('nextScene'), 63000);
+setTimeout(() => player.goto('nextScene'), 70000);
 
 //Open modal and show your content
 
