@@ -271,24 +271,24 @@ function start() {
 }
 
 start();
-setTimeout(() => player.goto('nextScene'), 7000);
-setTimeout(() => player.goto('nextScene'), 14000);
+setTimeout(() => player.goto('nextScene'), 1000);
+setTimeout(() => player.goto('nextScene'), 2000);
 setTimeout(() => {
   player.goto('nextScene');
   player.get('painting');
   player.look();
-}, 21000);
+}, 3000);
 setTimeout(() => {
   player.goto('nextScene');
   player.get('postcard');
   player.look();
-}, 28000);
-setTimeout(() => player.goto('nextScene'), 35000);
-setTimeout(() => player.goto('nextScene'), 42000);
-setTimeout(() => player.goto('nextScene'), 49000);
-setTimeout(() => player.goto('nextScene'), 56000);
-setTimeout(() => player.goto('nextScene'), 63000);
-setTimeout(() => player.goto('nextScene'), 70000);
+}, 4000);
+setTimeout(() => player.goto('nextScene'), 5000);
+setTimeout(() => player.goto('nextScene'), 6000);
+setTimeout(() => player.goto('nextScene'), 7000);
+setTimeout(() => player.goto('nextScene'), 8000);
+setTimeout(() => player.goto('nextScene'), 9000);
+setTimeout(() => player.goto('nextScene'), 10000);
 
 $closeModal.addEventListener('click', function (e) {
   e.preventDefault();
