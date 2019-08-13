@@ -1,5 +1,3 @@
-![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
-
 # Project #1: Torri - Adventure Game
 
 ## Introduction
